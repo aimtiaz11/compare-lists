@@ -16,9 +16,7 @@ new File( args[1] ).eachLine { line ->
 
 List diff1 = (sourceList-targetList)
 List diff2 = (targetList-sourceList)
-List diff3 = sourceList.intersect(targetList)
-
-
+List commonItems = sourceList.intersect(targetList)
 
 println """
 \n
@@ -26,24 +24,22 @@ println "################ COMPARE LIST #########################
 \n
 """
 
+println "- Total in ${args[0]}: ${sourceList.size}"
+println "- Total in ${args[1]}: ${targetList.size}"
 
 
-println "- Total in sourceList: ${sourceList.size}"
-println "- Total in targetList: ${targetList.size}"
-
-
-println "\n\n**** Items in '${args[0]}' not in '${args[1]}' list: ${diff1.size} ****\n"
+println "\n\n**** Number of items in '${args[0]}' not in '${args[1]}' list: ${diff1.size} ****\n"
 diff1.each { println "\t${it}" }
 
 
-println "\n\n**** Items in '${args[1]}' not in '${args[0]}' list: ${diff2.size} ****\n"
+println "\n\n**** Number of items in '${args[1]}' not in '${args[0]}' list: ${diff2.size} ****\n"
 diff2.each { println "\t${it}" }
 
 
 
-println "\n\n***** Common items: ${diff3.size} *****\n"
+println "\n\n***** Common items: ${commonItems.size} *****\n"
 
-diff3.each { println "\t${it}" }
+commonItems.each { println "\t${it}" }
 
 println """\n
 ######################################################
